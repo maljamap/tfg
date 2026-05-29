@@ -1,3 +1,4 @@
+javascript id="j4p8mx"
 function analizar() {
 
     let mensaje = document.getElementById("mensaje").value.toLowerCase();
@@ -29,30 +30,31 @@ function analizar() {
     let urls = mensaje.match(regexURL);
 
     if (urls) {
-        let urlSospechosa = false;
 
         urls.forEach(url => {
+
             if (
-                (url.includes("bitly") || url.includes("tinyurl")) &&
-                (url.length < 10 || url.length > 40)
+                url.includes("bitly") ||
+                url.includes("tinyurl") ||
+                url.length > 40
             ) {
-                urlSospechosa = true;
+                sospechoso++;
             }
+
         });
-
-        if (urlSospechosa) {
-            sospechoso++;
-        }
-
     }
-    
+
     let contador = 0;
 
-    palabrasClave.forEach(p => {
-        if (mensaje.includes(p)) {
+    palabrasClave.forEach(palabra => {
+
+        if (mensaje.includes(palabra)) {
             contador++;
         }
+
     });
+
+    console.log("Palabras detectadas:", contador);
 
     if (contador >= 1) {
         sospechoso++;
@@ -65,16 +67,16 @@ function analizar() {
     let resultado = "";
 
     if (bloqueado === 1) {
+
         resultado = "MENSAJE BLOQUEADO";
 
-    } else if (sospechoso === 1) {
-        resultado = "MENSAJE SOSPECHOSO";
+    } else if (sospechoso >= 1) {
 
-    } else if (sospechoso === 0) {
-        resultado = "MENSAJE SEGURO";
+        resultado = "MENSAJE SOSPECHOSO";
 
     } else {
-        resultado = "MENSAJE SOSPECHOSO";
+
+        resultado = "MENSAJE SEGURO";
     }
 
     document.getElementById("resultado").innerText = resultado;
