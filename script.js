@@ -1,4 +1,3 @@
-javascript
 function analizar() {
 
     let mensaje = document.getElementById("mensaje").value.toLowerCase();
