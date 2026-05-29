@@ -44,11 +44,8 @@ function analizar() {
             sospechoso++;
         }
 
-    } else {
-        document.getElementById("resultado").innerText = "MENSAJE SEGURO";
-        return;
     }
-
+    
     let contador = 0;
 
     palabrasClave.forEach(p => {
