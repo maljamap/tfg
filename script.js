@@ -34,8 +34,9 @@ function analizar() {
         urls.forEach(url => {
 
             if (
-                url.includes("bitly") ||
-                url.includes("tinyurl") ||
+                url.includes("bit.ly") ||
+                url.includes("tinyurl.com") ||
+                url.length < 10 ||
                 url.length > 40
             ) {
                 sospechoso++;
