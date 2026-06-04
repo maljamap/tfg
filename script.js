@@ -25,6 +25,12 @@ function analizar() {
         "cambio"
     ];
 
+    // ----------------------------
+    // COMPROBACIÓN DE URLS
+    // ----------------------------
+
+    let urlSospechosa = false;
+
     let regexURL = /(https?:\/\/[^\s]+)/g;
     let urls = mensaje.match(regexURL);
 
@@ -34,15 +40,23 @@ function analizar() {
 
             if (
                 url.includes("bit.ly") ||
-                url.includes("tinyurl.com") ||
+                url.includes("tinyurl") ||
                 url.length < 10 ||
                 url.length > 40
             ) {
+
+                urlSospechosa = true;
                 sospechoso++;
+
             }
 
         });
+
     }
+
+    // ----------------------------
+    // CONTADOR DE PALABRAS CLAVE
+    // ----------------------------
 
     let contador = 0;
 
@@ -56,13 +70,24 @@ function analizar() {
 
     console.log("Palabras detectadas:", contador);
 
+    // Una o dos palabras clave
     if (contador >= 1) {
         sospechoso++;
     }
 
-    if (contador >= 2) {
+    // Tres o más palabras clave
+    if (contador >= 3) {
         bloqueado = 1;
     }
+
+    // URL sospechosa + palabra clave
+    if (urlSospechosa && contador >= 1) {
+        bloqueado = 1;
+    }
+
+    // ----------------------------
+    // RESULTADO FINAL
+    // ----------------------------
 
     let resultado = "";
 
@@ -77,6 +102,7 @@ function analizar() {
     } else {
 
         resultado = "MENSAJE SEGURO";
+
     }
 
     document.getElementById("resultado").innerText = resultado;
