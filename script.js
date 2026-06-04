@@ -1,4 +1,3 @@
-javascript id="j4p8mx"
 function analizar() {
 
     let mensaje = document.getElementById("mensaje").value.toLowerCase();
