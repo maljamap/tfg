@@ -34,7 +34,7 @@ function analizar() {
                 url.includes("bitly") ||
                 url.includes("tinyurl") ||
                 url.length < 15 ||
-                url.length > 50
+                url.length > 40
             ) {
                 sospechoso++;
                 urlSospechosa = true;
