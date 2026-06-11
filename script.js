@@ -1,6 +1,7 @@
 function analizar() {
     
-    let mensaje = document.getElementById("mensaje").value.toLowerCase();
+    let mensaje = document.getElementById("mensaje").value;
+    let mensajeAnalisis = mensaje.toLowerCase();
     
     let sospechoso = 0;
     let bloqueado = 0;
@@ -26,12 +27,12 @@ function analizar() {
     ];
     
     let regexURL = /(https?:\/\/[^\s]+)/g;
-    let urls = mensaje.match(regexURL);
+    let urls = mensajeAnalisis.match(regexURL);
     
     if (urls) {
         urls.forEach(url => {
             if (
-                url.includes("bitly") ||
+                url.includes("bit.ly") ||
                 url.includes("tinyurl") ||
                 url.length < 15 ||
                 url.length > 40
@@ -45,7 +46,7 @@ function analizar() {
     let contador = 0;
     
     palabrasClave.forEach(palabra => {
-        if (mensaje.includes(palabra)) {
+        if (mensajeAnalisis.includes(palabra)) {
             contador++;
         }
     });
@@ -75,7 +76,19 @@ function analizar() {
     } else {
         resultado = "MENSAJE SEGURO";
     }
+    let resultadoElemento = document.getElementById("resultado");
     
-    document.getElementById("resultado").innerText = resultado;
+    if (resultado === "MENSAJE SEGURO") {
+        resultadoElemento.style.color = "green";
+    }
+    
+    if (resultado === "MENSAJE SOSPECHOSO") {
+        resultadoElemento.style.color = "orange";
+    }
+    if (resultado === "MENSAJE BLOQUEADO") {
+        resultadoElemento.style.color = "red";
+    }
+    
+    resultadoElemento.innerText = resultado;
     document.getElementById("mensajeMostrado").innerText = mensaje;
 }
