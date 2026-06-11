@@ -1,12 +1,9 @@
 javascript id="j4p8mx"
     function analizar() {
-        
-        let mensaje =
-            document.getElementById("mensaje").value.toLowerCase();
+        let mensaje = document.getElementById("mensaje").value.toLowerCase();
         
         let sospechoso = 0;
         let bloqueado = 0;
-        
         let palabrasClave = [
             "urgente",
             "urgencia",
@@ -14,7 +11,7 @@ javascript id="j4p8mx"
             "caduca",
             "renovar",
             "renovación",
-            "suscribir", 
+            "suscribir",
             "suscripción",
             "dinero",
             "banco",
@@ -47,13 +44,13 @@ javascript id="j4p8mx"
         
         let contador = 0;
         
-        palabrasClave.forEach(palabra => {
+        palabrasClave.forEach(palabra =>
             
-            if (mensaje.includes(palabra)) {
+            { if (mensaje.includes(palabra)) {
                 contador++;
             }
-        
-        });
+            
+            });
         
         console.log("Palabras detectadas:", contador);
         
@@ -73,6 +70,7 @@ javascript id="j4p8mx"
         } else if (sospechoso >= 1) {
             
             resultado = "MENSAJE SOSPECHOSO";
+        
         } else {
             
             resultado = "MENSAJE SEGURO";
