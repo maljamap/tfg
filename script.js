@@ -4,6 +4,7 @@ function analizar() {
     
     let sospechoso = 0;
     let bloqueado = 0;
+    let urlSospechosa = false;
     let palabrasClave = [
         "urgente",
         "urgencia",
@@ -32,9 +33,11 @@ function analizar() {
             if (
                 url.includes("bitly") ||
                 url.includes("tinyurl") ||
+                url.length < 10 ||
                 url.length > 40
             ) {
                 sospechoso++;
+                urlSospechosa = true;
             }
         });
     }
@@ -53,7 +56,11 @@ function analizar() {
         sospechoso++;
     }
     
-    if (contador >= 2) {
+    if (contador >= 3) {
+        bloqueado = 1;
+    }
+
+    if (urlSospechosa && contador >= 1) {
         bloqueado = 1;
     }
     
