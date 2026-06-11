@@ -77,4 +77,5 @@ function analizar() {
     }
     
     document.getElementById("resultado").innerText = resultado;
+    document.getElementById("mensajeMostrado").innerText = mensaje;
 }
